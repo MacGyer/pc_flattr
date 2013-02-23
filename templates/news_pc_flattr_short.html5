@@ -1,0 +1,32 @@
+
+<div class="layout_short block<?php echo $this->class; ?>">
+<?php if ($this->hasMetaFields): ?>
+<p class="info"><time datetime="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></time> <?php echo $this->author; ?> <?php echo $this->commentCount; ?></p>
+<?php endif; ?>
+<h2><?php echo $this->linkHeadline; ?></h2>
+<div class="teaser">
+<?php echo $this->teaser; ?> 
+</div>
+<?php if ($this->text): ?>
+<p class="more"><?php echo $this->more; ?></p>
+<?php endif; ?>
+
+<?php if ($this->pc_flattr_active): ?>
+<!-- indexer::stop -->
+<div class="pc_flattr_container">
+    <a class="FlattrButton" style="display:none;"
+        title="<?php echo $this->headline; ?>"
+        data-flattr-uid="<?php echo $this->pc_flattr['pc_flattr_username']; ?>"
+        data-flattr-category="<?php echo $this->pc_flattr_category; ?>"
+        <?php echo((!empty($this->pc_flattr_tags)) ? 'data-flattr-tags="'.$this->pc_flattr_tags.'"' : ''); ?>
+        <?php echo((!empty($this->pc_flattr['pc_flattr_button'])) ? 'data-flattr-button="compact"' : ''); ?>        
+        data-flattr-popout="<?php echo $this->pc_flattr['pc_flattr_popout']; ?>"
+        <?php echo(($this->pc_flattr_hidden) ? 'data-flattr-hidden="'.$this->pc_flattr_hidden.'"' : ''); ?>
+        href="<?php echo $this->link; ?>">
+        <?php echo((!empty($this->teaser)) ? strip_tags($this->teaser) : $this->headline); ?>
+    </a>
+</div>
+<!-- indexer::continue -->
+<?php endif; ?>
+
+</div>

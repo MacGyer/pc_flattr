@@ -1,0 +1,41 @@
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+<?php echo $this->event; ?>
+
+<?php if ($this->pc_flattr_active): ?>
+<!-- indexer::stop -->
+<div class="pc_flattr_container">
+    <a class="FlattrButton" style="display:none;"
+        title="<?php echo $this->pc_flattr_title; ?>"
+        data-flattr-uid="<?php echo $this->pc_flattr['pc_flattr_username']; ?>"
+        data-flattr-category="<?php echo $this->pc_flattr_category; ?>"
+        <?php echo((!empty($this->pc_flattr_tags)) ? 'data-flattr-tags="'.$this->pc_flattr_tags.'"' : ''); ?>
+        <?php echo((!empty($this->pc_flattr['pc_flattr_button'])) ? 'data-flattr-button="compact"' : ''); ?>        
+        data-flattr-popout="<?php echo $this->pc_flattr['pc_flattr_popout']; ?>"
+        <?php echo(($this->pc_flattr_hidden) ? 'data-flattr-hidden="'.$this->pc_flattr_hidden.'"' : ''); ?>
+        href="<?php echo $this->pc_flattr_link; ?>">
+        <?php echo((!empty($this->teaser)) ? strip_tags($this->teaser) : $this->title); ?>
+    </a>
+</div>
+<!-- indexer::continue -->
+<?php endif; ?>
+
+<!-- indexer::stop -->
+<p class="back"><a href="<?php echo $this->referer; ?>" title="<?php echo $this->back; ?>"><?php echo $this->back; ?></a></p>
+<!-- indexer::continue -->
+<?php if ($this->allowComments && ($this->comments || !$this->requireLogin)): ?>
+
+<div class="ce_comments block">
+
+<<?php echo $this->hlc; ?>><?php echo $this->addComment; ?></<?php echo $this->hlc; ?>>
+<?php foreach ($this->comments as $comment) echo $comment; ?>
+<?php echo $this->pagination; ?>
+<?php include $this->getTemplate('mod_comment_form', 'html5'); ?>
+
+</div>
+<?php endif; ?>
+
+</div>

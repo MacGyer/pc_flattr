@@ -1,0 +1,45 @@
+<div class="event layout_full block<?php echo $this->class; ?>">
+
+<h1><?php echo $this->title; ?></h1>
+
+<?php if ($this->pc_flattr_active): ?>
+<!-- indexer::stop -->
+<div class="pc_flattr_container">
+    <a class="FlattrButton" style="display:none;"
+        title="<?php echo $this->title; ?>"
+        data-flattr-uid="<?php echo $this->pc_flattr['pc_flattr_username']; ?>"
+        data-flattr-category="<?php echo $this->pc_flattr_category; ?>"
+        <?php echo((!empty($this->pc_flattr_tags)) ? 'data-flattr-tags="'.$this->pc_flattr_tags.'"' : ''); ?>
+        <?php echo((!empty($this->pc_flattr['pc_flattr_button'])) ? 'data-flattr-button="compact"' : ''); ?>        
+        data-flattr-popout="<?php echo $this->pc_flattr['pc_flattr_popout']; ?>"
+        <?php echo(($this->pc_flattr_hidden) ? 'data-flattr-hidden="'.$this->pc_flattr_hidden.'"' : ''); ?>
+        href="<?php echo $this->link; ?>">
+        <?php echo((!empty($this->teaser)) ? strip_tags($this->teaser) : $this->title); ?>
+    </a>
+</div>
+<!-- indexer::continue -->
+<?php endif; ?>
+
+<p class="info"><?php echo $this->date; ?></p>
+<?php if ($this->recurring): ?>
+
+<p class="recurring"><?php echo $this->recurring; if ($this->until): ?> <?php echo $this->until; endif; ?>.</p>
+<?php endif; ?>
+<?php if ($this->details): ?>
+<?php echo $this->details; ?>
+<?php else: ?>
+
+<div class="ce_text block">
+<?php echo $this->teaser; ?> 
+</div>
+<?php endif; ?>
+<?php if ($this->enclosure): ?>
+
+<div class="enclosure">
+<?php foreach ($this->enclosure as $enclosure): ?>
+<p><img src="<?php echo $enclosure['icon']; ?>" width="18" height="18" alt="<?php echo $enclosure['mime']; ?>" class="mime_icon"> <a href="<?php echo $enclosure['href']; ?>" title="<?php echo $enclosure['title']; ?>"><?php echo $enclosure['link']; ?> <span class="size">(<?php echo $enclosure['filesize']; ?>)</span></a></p>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>
+
+</div>
